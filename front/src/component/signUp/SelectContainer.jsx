@@ -2,17 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import arrowimg from "../../assets/arrow.png";
 
-function SelectContainer({ width, height, name, onChange }) {
+function SelectContainer({ width, height, name, onChange, isId }) {
   const [selectState, setSelectState] = useState(false);
   const openSelect = () => {
     selectState ? setSelectState(false) : setSelectState(true);
   };
-  const colseSelect = () => {
-    setTimeout(function () {
-      setSelectState(false);
-    }, 1);
-  };
-  document.onmousedown = colseSelect;
 
   return (
     <Container>
@@ -28,6 +22,7 @@ function SelectContainer({ width, height, name, onChange }) {
         height={height}
         name={name}
         onChange={onChange}
+        id={isId ? isId : null}
       >
         <option value="">이메일 선택 </option>
         <option value="@naver.com">naver.com</option>

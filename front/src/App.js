@@ -1,11 +1,12 @@
 import "./App.css";
-import React, { Component } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Login from "./component/login/Login";
 import SignUp from "./component/signUp/SignUp";
 import MainPage from "./component/mainPage/MainPage";
-import MainPageFriend from "./component/mainPage_Friend/MainPageFriend";
 import YearChange from "./component/yearChange/YearChange";
+import FindInfo from "./component/find_Info/FindMain";
+import Intro from "./component/intro/Intro";
 
 function App() {
   return (
@@ -13,8 +14,10 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/mainPage" element={<MainPage />} />
-      <Route path="/mainPage/friend" element={<MainPageFriend />} />
       <Route path="/yearChange" element={<YearChange />} />
+      <Route path="/find-id" element={<FindInfo />} />
+      <Route path="/find-password" element={<FindInfo />} />
+      <Route path="/" element={<Intro />} />
     </Routes>
   );
 }

@@ -5,7 +5,7 @@ const overlap = {
     if (!id) return ["", ""];
 
     const overlapCheck = await overlapApi(id, "id");
-    const text = overlap.success
+    const text = overlapCheck.success
       ? "이미 사용중인 아이디 입니다."
       : "사용가능한 아이디 입니다.";
 

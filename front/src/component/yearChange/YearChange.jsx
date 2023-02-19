@@ -11,9 +11,20 @@ function YearChange() {
   const year = location.state.year;
   const url = location.state.url;
 
+  const logOut = () => {
+    localStorage.setItem("userID", "");
+    localStorage.setItem("myID", "");
+
+    navigate("/login");
+  };
+
   const navigate = useNavigate();
   const moveYearChange = (e) => {
-    navigate(`${url}`, { state: { year: e.target.textContent } });
+    if (e.target.textContent !== "") {
+      navigate(`${url}`, {
+        state: { year: e.target.textContent },
+      });
+    }
   };
 
   const [yearList, increaseYearList, decreaseYearList] = YearCounter(year);
@@ -31,12 +42,12 @@ function YearChange() {
           style={{
             display: "flex",
             width: "1300px",
-            margin: "50px auto 0",
+            margin: "78px auto 0",
             flexDirection: "row-reverse",
             alignItems: "center",
           }}
         >
-          <MainTopRight />
+          <StyleTextBtn onClick={logOut}>로그아웃</StyleTextBtn>
         </div>
       </div>
       <div
@@ -75,6 +86,7 @@ function YearChange() {
               viewingYear={value === year}
               key={index}
               onClick={moveYearChange}
+              value={value}
             >
               {value}
             </YearText>
@@ -108,6 +120,17 @@ const YearText = styled.div`
   font-family: ${({ viewingYear }) =>
     viewingYear ? "GmarketSansBold" : "GmarketSansMedium"};
   color: ${({ viewingYear }) => (viewingYear ? "#393939" : "#797979")};
+  user-select: none;
+  cursor: ${({ value }) => (value ? "pointer" : "null")};
+`;
+
+const StyleTextBtn = styled.div`
+  letter-spacing: 0px;
+  font-family: GmarketSansMedium;
+  padding: 10px 21px;
+  font-size: 25px;
+  margin-right: 10px;
+  color: #707070;
   user-select: none;
   cursor: pointer;
 `;

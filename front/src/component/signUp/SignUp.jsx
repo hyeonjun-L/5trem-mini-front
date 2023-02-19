@@ -45,7 +45,10 @@ export default function SignUp() {
     if (checkListALLTrue) {
       setCheck({
         fullAgreement: true,
-        ...checkList,
+        termsOfUse: true,
+        privacy: true,
+        sms: true,
+        email: true,
       });
     } else {
       setCheck((check) => {
@@ -72,7 +75,6 @@ export default function SignUp() {
     });
     if (name === "id") {
       const [idCheck, idText] = await overlap.idCheck(value);
-      console.log(idCheck);
       setOverlapCheck((check) => {
         return { ...check, ["idCheck"]: idCheck, ["idText"]: idText };
       });
@@ -86,7 +88,7 @@ export default function SignUp() {
         };
       });
     }
-  }, 500);
+  }, 250);
   const [passwordCheck, passwordText] = overlap.passwordCheck(
     userInfo.password,
     userInfo.checkPassword
@@ -114,13 +116,13 @@ export default function SignUp() {
     },
     {
       id: "privacy",
-      description: "이용약관에 동의 하십니까?",
+      description: "개인정보 수집 및 이용에 동의하십니까?",
       isRequired: true,
     },
-    { id: "sms", description: "이용약관에 동의 하십니까?", isRequired: false },
+    { id: "sms", description: "SMS 수신을 동의 하십니까?", isRequired: false },
     {
       id: "email",
-      description: "이용약관에 동의 하십니까?",
+      description: "이메일 수신을 동의 하십니까?",
       isRequired: false,
     },
   ];
@@ -398,7 +400,6 @@ export default function SignUp() {
                 <CheckBox
                   width={40}
                   height={40}
-                  round={true}
                   id={el.id}
                   checked={checkList[el.id]}
                   checkAccount={SingleCheck}

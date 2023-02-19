@@ -9,21 +9,24 @@ import styled from "styled-components";
  */
 
 const StyleBtn = styled.button`
-  color: #393939;
+  color: ${({ blue }) => (blue ? "#FFFFFF" : "#393939")};
   position: absolute;
 
   width: ${({ width }) => width - 10}px;
   height: ${({ height }) => height - 10}px;
 
-  background: transparent
-    linear-gradient(100deg, #e8ebf2 0%, #b8c0d1 0%, #d9deeb 100%) 0% 0%
-    no-repeat padding-box;
+  background: ${({ blue }) =>
+    blue
+      ? "#1A2C5A96"
+      : "linear-gradient(100deg, #e8ebf2 0%, #b8c0d1 0%, #d9deeb 100%)"};
   box-shadow: 5px 5px 20px #0f296b66;
   border: 0px solid #ffffff;
   border-radius: ${({ diary }) => (diary ? "50%" : "10px")};
   font-size: ${({ transfrom }) => (transfrom ? "15" : "40")}px;
   font-family: ${({ transfrom }) =>
     transfrom ? "GmarketSansMedium" : "GmarketSansBold"};
+  user-select: none;
+  cursor: pointer;
 `;
 
 export default StyleBtn;

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import LightContainer from "../../publicCompent/LightContainer";
@@ -9,10 +9,24 @@ import BackGround from "../../publicCompent/BackGround";
 import loginApi from "../../api/loginApi";
 
 function Login() {
+  window.localStorage.setItem("userID", "");
+  const navigate = useNavigate();
+
   const [userInfo, setUserInfo] = useState({
     id: "",
     password: "",
   });
+
+  const moveMainPage = async () => {
+    if (await loginApi(userInfo)) {
+      navigate("/mainPage");
+      window.localStorage.setItem("userID", userInfo.id);
+      window.localStorage.setItem("myID", userInfo.id);
+    } else {
+      alert(`아이디 또는 비밀번호를 잘못 입력했습니다.
+      입력하신 내용을 다시 확인해주세요.`);
+    }
+  };
 
   const onChangeAccount = (text) => {
     setUserInfo((user) => {
@@ -20,16 +34,22 @@ function Login() {
     });
   };
 
-  const navigate = useNavigate();
   const moveSignUp = () => {
     navigate("/signUp");
   };
 
-  const moveMainPage = async () => {
-    (await loginApi(userInfo))
-      ? navigate("/mainPage", { state: userInfo })
-      : alert(`아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다.
-입력하신 내용을 다시 확인해주세요.`);
+  const moveFindId = () => {
+    navigate("/find-id");
+  };
+
+  const moveFindPW = () => {
+    navigate("/find-password");
+  };
+
+  const enterkey = (e) => {
+    if (e.keyCode === 13) {
+      moveMainPage();
+    }
   };
 
   return (
@@ -44,6 +64,8 @@ function Login() {
               name="id"
               placeholder="아이디"
               onChange={onChangeAccount}
+              id="userID"
+              onKeyUp={enterkey}
             />
           }
         />
@@ -58,6 +80,7 @@ function Login() {
               type="password"
               placeholder="비밀번호"
               onChange={onChangeAccount}
+              onKeyUp={enterkey}
             />
           }
         />
@@ -71,8 +94,8 @@ function Login() {
         }}
       >
         <div>
-          <StyleTextBtn>아이디 찾기</StyleTextBtn>
-          <StyleTextBtn>비밀번호 찾기</StyleTextBtn>
+          <StyleTextBtn onClick={moveFindId}>아이디 찾기</StyleTextBtn>
+          <StyleTextBtn onClick={moveFindPW}>비밀번호 찾기</StyleTextBtn>
           <StyleTextBtn right={true} onClick={moveSignUp}>
             회원가입
           </StyleTextBtn>
@@ -98,6 +121,8 @@ const StyleTextBtn = styled.span`
   font-family: GmarketSansMedium;
   padding: 4px 8px;
   color: #707070;
+  user-select: none;
+  cursor: pointer;
 `;
 
 export default Login;

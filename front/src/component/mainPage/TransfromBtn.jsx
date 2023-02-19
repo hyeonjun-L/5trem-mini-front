@@ -2,8 +2,18 @@ import React from "react";
 import LightContainer from "../../publicCompent/LightContainer";
 import StyleBtn from "../../publicCompent/StyleBtn";
 import styled from "styled-components";
+import { ReactComponent as XImg } from "../../assets/xImg.svg";
 
-function TransfromBtn({ reduction, diary, setDiary, setReduction }) {
+function TransfromBtn({
+  reduction,
+  setReduction,
+  diary,
+  setDiary,
+  friendViewer,
+  setFriendViewer,
+  myPageViewer,
+  setMyPageViewer,
+}) {
   const transfrom = () => {
     setDiary((prev) => !prev);
     setReduction(false);
@@ -12,8 +22,10 @@ function TransfromBtn({ reduction, diary, setDiary, setReduction }) {
       : "#E8EBF2";
   };
 
-  const onclick = () => {
+  const closeFriendWindow = () => {
     setReduction(false);
+    setFriendViewer(false);
+    setMyPageViewer(false);
   };
 
   return (
@@ -35,9 +47,11 @@ function TransfromBtn({ reduction, diary, setDiary, setReduction }) {
             }
           />
         </div>
-        <CloseSideWindow onClick={onclick} reduction={reduction}>
-          X
-        </CloseSideWindow>
+        <div style={{ marginRight: "40px" }}>
+          {(friendViewer || myPageViewer) && (
+            <Close onClick={closeFriendWindow} />
+          )}
+        </div>
       </Container>
     </div>
   );
@@ -53,8 +67,6 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const CloseSideWindow = styled.div`
-  margin-top: 25px;
-  margin-right: 50px;
-  display: ${({ reduction }) => (reduction ? null : "none")};
+const Close = styled(XImg)`
+  cursor: pointer;
 `;
