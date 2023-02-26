@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "SCDream9";
+  src: url(../public/font/SCDream9.woff) format("woff");
+}
+
+@font-face {
+  font-family: "SCDream8";
+  src: url(../public/font/SCDream8.woff) format("woff");
+}
+
+@font-face {
+  font-family: "SCDream7";
+  src: url(../public/font/SCDream7.woff) format("woff");
+}
+
+@font-face {
+  font-family: "SCDream6";
+  src: url(../public/font/SCDream6.woff) format("woff");
+}
+
+@font-face {
+  font-family: "SCDream5";
+  src: url(../public/font/SCDream5.woff) format("woff");
+}
+
+@font-face {
+  font-family: "SCDream4";
+  src: url(../public/font/SCDream4.woff) format("woff");
+}
+
+@font-face {
+  font-family: "SCDream3";
+  src: url(../public/font/SCDream3.woff) format("woff");
+}
+
+@font-face {
+  font-family: "SCDream2";
+  src: url(../public/font/SCDream2.woff) format("woff");
+}
+
+@font-face {
+  font-family: "SCDream1";
+  src: url(../public/font/SCDream1.woff) format("woff");
+}
+
+@font-face {
+  font-family: "GmarketSansBold";
+  src: url(../public/font/GmarketSansBold.woff) format("woff");
+}
+
+@font-face {
+  font-family: "GmarketSansLight";
+  src: url(../public/font/GmarketSansLight.woff) format("woff");
+}
+
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url(../public/font/GmarketSansMedium.woff) format("woff");
+}
+
+ul {
+  list-style: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  /* height: 100vh; */
+}
+
+body {
+  width: 100%;
+  /* height: 100vh; */
+  background-color: #f2f3f7;
+}
